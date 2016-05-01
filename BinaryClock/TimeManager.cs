@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace BinaryClock {
     public class TimeManager {
         public string Hours {get; set;}
@@ -12,6 +7,7 @@ namespace BinaryClock {
         public TimeManager() {
             this.Update();
         }
+
         public void Update() {
             this.Hours=DateTime.Now.TimeOfDay.Hours.ToString();
             this.Minutes=DateTime.Now.TimeOfDay.Minutes.ToString();
