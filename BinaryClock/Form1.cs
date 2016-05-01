@@ -17,22 +17,6 @@ namespace BinaryClock {
             seconds=new List<Button> { seconds1,seconds2,seconds4,seconds8,seconds16,seconds32 };
             minutes=new List<Button> { minutes1,minutes2,minutes4,minutes8,minutes16,minutes32 };
             hours=  new List<Button> { hours1,hours2,hours4,hours8,hours16 };
-            setLabels();
-        }
-
-        private void button1_Click(Object sender,EventArgs e) {
-            //setLabels();
-            timemanager.Update();
-            drawSeconds();
-            drawMinutes();
-            drawHours();
-        }
-        //Refactor this to eliminate need
-        private void setLabels() {
-            timemanager.Update();
-            labelHours.Text=Convert.ToString(Int32.Parse(timemanager.Hours),2).PadLeft(5,'0');
-            labelMinutes.Text=Convert.ToString(Int32.Parse(timemanager.Minutes),2).PadLeft(6,'0');
-            labelSeconds.Text=Convert.ToString(Int32.Parse(timemanager.Seconds),2).PadLeft(6,'0');
         }
 
         private void updateButtons() {
@@ -42,7 +26,7 @@ namespace BinaryClock {
         }
 
         private void drawSeconds() {
-            char[] arr = labelSeconds.Text.ToCharArray();
+            char[] arr = Convert.ToString(Int32.Parse(timemanager.Seconds),2).PadLeft(6,'0').ToCharArray();
             Array.Reverse(arr);
             string s = new string(arr);
             for(int x = 0;x<s.Length;x++) {
@@ -50,7 +34,7 @@ namespace BinaryClock {
             }
         }
         private void drawMinutes() {
-            char[] arr = labelMinutes.Text.ToCharArray();
+            char[] arr = Convert.ToString(Int32.Parse(timemanager.Minutes),2).PadLeft(6,'0').ToCharArray();
             Array.Reverse(arr);
             string s = new string(arr);
             for(int x = 0;x<s.Length;x++) {
@@ -58,7 +42,8 @@ namespace BinaryClock {
             }
         }
         private void drawHours() {
-            char[] arr = labelHours.Text.ToCharArray();
+            
+            char[] arr = Convert.ToString(Int32.Parse(timemanager.Hours),2).PadLeft(5,'0').ToCharArray();
             Array.Reverse(arr);
             string s = new string(arr);
             for(int x = 0;x<s.Length;x++) {
@@ -75,7 +60,6 @@ namespace BinaryClock {
 
         private void timer1_Tick(Object sender,EventArgs e) {
             timemanager.Update();
-            setLabels();
             updateButtons();
         }
     }
